@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base Styles ───────────────────────────────── */
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply bg-surface-950 text-white selection:bg-primary-500/30;
+}
+
+/* ── Clinical Dashboard Utilities ──────────────── */
+@layer components {
+    .card {
+        @apply bg-surface-900 rounded-xl border border-surface-800 p-6;
+    }
+
+    .card-floating {
+        @apply rounded-xl p-6 transition-all duration-300 hover:border-primary-500/30 hover:shadow-primary-500/5 hover:-translate-y-0.5;
+        background-color: rgba(15, 23, 42, 0.4);
+        /* surface-900/40 */
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(51, 65, 85, 0.5);
+        /* surface-700/50 */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-hover {
+        @apply card transition-all duration-200 hover:border-primary-500/30 hover:shadow-lg hover:shadow-primary-500/5;
+    }
+
+    .glass-panel {
+        @apply bg-surface-900/60 backdrop-blur-xl border border-white/5 rounded-2xl;
+    }
+
+    .animate-in {
+        animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slide-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+    }
+
+    .badge-low {
+        @apply badge bg-risk-low/10 text-risk-low border border-risk-low/20;
+    }
+
+    .badge-moderate {
+        @apply badge bg-risk-moderate/10 text-risk-moderate border border-risk-moderate/20;
+    }
+
+    .badge-high {
+        @apply badge bg-risk-high/10 text-risk-high border border-risk-high/20;
+    }
+
+    .badge-critical {
+        @apply badge bg-risk-critical/10 text-risk-critical border border-risk-critical/20 animate-pulse;
+    }
+}
+
+/* ── Scrollbar Styling ─────────────────────────── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.5);
+}
