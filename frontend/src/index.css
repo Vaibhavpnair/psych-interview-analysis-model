@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+
+    body {
+        @apply bg-surface font-sans text-clinical-text;
+    }
+
+    /* Custom scrollbar — subtle clinical look */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-clinical-border rounded-full;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-secondary;
+    }
+}
+
+@layer components {
+
+    /* Card with hover elevation — Stripe-like lift */
+    .card-clinical {
+        @apply bg-white rounded-card border border-clinical-border shadow-card;
+        transition: transform 0.18s cubic-bezier(0.33, 1, 0.68, 1),
+            box-shadow 0.18s cubic-bezier(0.33, 1, 0.68, 1),
+            border-color 0.18s ease;
+    }
+
+    .card-clinical:hover {
+        @apply shadow-card-hover;
+        transform: translateY(-1px);
+    }
+
+    /* Floating primary button — layered shadows + gentle scale on hover */
+    .btn-primary {
+        @apply bg-primary text-white px-5 py-2.5 rounded-lg font-medium text-sm shadow-float;
+        transition: transform 0.18s cubic-bezier(0.33, 1, 0.68, 1),
+            box-shadow 0.18s cubic-bezier(0.33, 1, 0.68, 1),
+            background-color 0.15s ease;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+        @apply bg-primary-light shadow-float-hover;
+        transform: translateY(-2px) scale(1.015);
+    }
+
+    .btn-primary:active:not(:disabled) {
+        @apply shadow-float-active;
+        transform: translateY(0px) scale(0.98);
+    }
+
+    .btn-primary:disabled {
+        @apply opacity-50 cursor-not-allowed;
+    }
+
+    /* Secondary outline button — subtle lift on hover */
+    .btn-secondary {
+        @apply border border-clinical-border text-clinical-text px-5 py-2.5 rounded-lg font-medium text-sm bg-transparent;
+        transition: transform 0.18s cubic-bezier(0.33, 1, 0.68, 1),
+            border-color 0.15s ease,
+            color 0.15s ease,
+            background-color 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+        @apply bg-primary-50 border-primary text-primary;
+        transform: translateY(-1px);
+    }
+
+    .btn-secondary:active {
+        @apply bg-primary-100;
+        transform: translateY(0);
+    }
+
+    /* Ghost button */
+    .btn-ghost {
+        @apply text-clinical-muted px-3 py-2 rounded-lg font-medium text-sm bg-transparent;
+        transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+        @apply bg-surface text-clinical-text;
+    }
+
+    /* Respect prefers-reduced-motion globally */
+    @media (prefers-reduced-motion: reduce) {
+
+        .btn-primary,
+        .btn-secondary,
+        .btn-ghost,
+        .card-clinical,
+        .metric-card,
+        .upload-zone,
+        .nav-item {
+            transition: none !important;
+            transform: none !important;
+        }
+
+        .animate-fade-in,
+        .animate-slide-up,
+        .animate-pulse,
+        .animate-pulse-soft,
+        .animate-pulse-ring,
+        .animate-modal-overlay,
+        .animate-modal-in,
+        .animate-modal-out,
+        .animate-progress-fill,
+        .animate-chart-reveal,
+        .animate-number-tick {
+            animation: none !important;
+        }
+    }
+
+    /* Upload drop zone — subtle scale on hover */
+    .upload-zone {
+        @apply border-2 border-dashed border-clinical-border rounded-xl p-8 flex flex-col items-center justify-center gap-4 cursor-pointer;
+        transition: transform 0.18s cubic-bezier(0.33, 1, 0.68, 1),
+            border-color 0.15s ease,
+            background-color 0.15s ease;
+    }
+
+    .upload-zone:hover {
+        @apply border-primary-light bg-primary-50/30;
+        transform: scale(1.005);
+    }
+
+    /* Metric card — subtle lift on hover */
+    .metric-card {
+        @apply card-clinical p-5 flex flex-col gap-1;
+    }
+
+    .metric-card:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Sidebar nav item */
+    .nav-item {
+        @apply flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-400 transition-all duration-200 ease-out cursor-pointer hover:text-white hover:bg-white/5;
+    }
+
+    .nav-item.active {
+        @apply text-white bg-white/10 border-l-2 border-primary-light;
+    }
+
+    /* Animation delay utilities */
+    .delay-100 {
+        animation-delay: 100ms;
+    }
+
+    .delay-200 {
+        animation-delay: 200ms;
+    }
+
+    .delay-300 {
+        animation-delay: 300ms;
+    }
+
+    .delay-400 {
+        animation-delay: 400ms;
+    }
+
+    .delay-500 {
+        animation-delay: 500ms;
+    }
+}

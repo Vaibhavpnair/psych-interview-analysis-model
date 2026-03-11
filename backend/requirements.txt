@@ -1,0 +1,27 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+pydantic
+pydantic-settings
+python-dotenv
+httpx
+# ML
+openai-whisper
+librosa
+spacy
+transformers<5.0
+accelerate
+tf-keras
+scipy
+python-multipart
+--extra-index-url https://download.pytorch.org/whl/cu118
+torch
+torchvision
+torchaudio
+mediapipe
+websockets
+opencv-python-headless
+numpy
+pandas
+scikit-learn>=1.5.0
